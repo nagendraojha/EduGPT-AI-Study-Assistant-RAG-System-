@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGPT - Your Personal Study Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> EduGPT</h1>
+            <p>Your Personal M.Tech Study Assistant Powered by AI</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> Upload Study Materials</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-file-upload"></i>
+                    <h3>Drag & Drop Files Here</h3>
+                    <p>or</p>
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                        Browse Files
+                    </button>
+                    <input type="file" id="fileInput" class="file-input" multiple 
+                           accept=".pdf,.docx,.doc,.txt,.pptx" onchange="handleFileSelect(this.files)">
+                </div>
+
+                <div class="uploaded-files" id="uploadedFiles">
+                    <h4>Uploaded Files:</h4>
+                    <div id="fileList"></div>
+                </div>
+
+                <button class="upload-btn" onclick="processDocuments()" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-cogs"></i> Process Documents & Build Knowledge Base
+                </button>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <h2 class="section-title"><i class="fas fa-robot"></i> Ask Questions</h2>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <strong>EduGPT:</strong> Hello! I'm your personal study assistant. Upload your M.Tech materials and ask me anything about them! I can help with explanations, summaries, comparisons, and more.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <input type="text" id="userInput" placeholder="Ask anything about your documents..." 
+                               onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Section -->
+        <div class="tools-section">
+            <h2 class="section-title"><i class="fas fa-tools"></i> AI Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="quickAction('summarize')">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>Summarize Document</h3>
+                    <p>Get concise summary of any document</p>
+                </div>
+                
+                <div class="tool-card" onclick="quickAction('compare')">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Compare Concepts</h3>
+                    <p>Compare two topics from your materials</p>
+                </div>
+                
+                <div class="tool-card" onclick="quickAction('explain')">
+                    <i class="fas fa-brain"></i>
+                    <h3>Deep Explanation</h3>
+                    <p>Get detailed explanations of complex topics</p>
+                </div>
+                
+                <div class="tool-card" onclick="quickAction('quiz')">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Generate Quiz</h3>
+                    <p>Test your knowledge with AI-generated questions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="settings-section">
+            <h2 class="section-title"><i class="fas fa-cog"></i> AI Model Settings</h2>
+            
+            <div class="setting-item">
+                <div>
+                    <h4>🌐 Perplexity AI (Online)</h4>
+                    <p>Better for current information, requires API key</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="usePerplexity">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <div class="setting-item">
+                <div>
+                    <h4>💻 Local Ollama</h4>
+                    <p>Works offline, completely private</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="useLocal" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Model Status Display -->
+            <div class="model-status">
+                <div class="status-indicator">
+                    <span class="status-dot" id="statusDot"></span>
+                    <strong>Current Model: </strong>
+                    <span id="currentModelDisplay">Local Ollama (llama2)</span>
+                </div>
+            </div>
+        </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
