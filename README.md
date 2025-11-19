@@ -1,3 +1,24 @@
+<table>
+  <tr>
+    <td align="center">
+      <img src="image1.png" width="400px;" alt="Home Page"/>
+      <br />
+      <b>Home Page</b>
+    </td>
+    <td align="center">
+      <img src="image2.png" width="400px;" alt="Chat Window"/>
+      <br />
+      <b>Chat Window</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="image3.png" width="400px;" alt="Source View"/>
+      <br />
+      <b>Source View</b>
+    </td>
+  </tr>
+</table>
 # 🎓 EduGPT: AI Study Assistant & RAG System
 
 **EduGPT** is an intelligent study companion designed to help students and researchers interact with their learning materials. Built on a Retrieval-Augmented Generation (RAG) architecture, it allows users to upload textbooks, lecture notes, or research papers and ask complex questions, receiving accurate, citation-backed answers instantly.
